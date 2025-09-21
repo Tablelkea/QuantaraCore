@@ -1,0 +1,65 @@
+name: Quantara
+version: 1.0
+main: fr.tableikea.quantara.Main
+api-version: 1.20
+commands:
+  createprofil:
+    aliases:
+      - forceprofil
+      - fcp
+    description: "Force la création d'un profil pour un joueur désigné."
+    permission: "admin.use"
+  checkprofil:
+    aliases:
+      - checkplayer
+      - check
+      - lookup
+    description: "Affiche les informations du joueur désigné."
+    permission: "admin.use"
+  removeprofil:
+    aliases:
+      - frp
+    description: "Force la suppression d'un profil pour un joueur désigné."
+    permission: "admin.use"
+  reloadconfig:
+    aliases:
+      - rlc
+    description: "Recharge la configuration du serveur."
+    permission: "admin.use"
+  mod:
+    aliases:
+      - annonce
+      - broadcast
+    description: "Publie un message sur tout le serveur."
+    permission: "admin.use"
+  color:
+    aliases:
+      - showcolor
+    description: "Affiche les couleurs disponible dans Minecraft pour les textes."
+  perm:
+    aliases:
+      - changeperm
+      - permission
+      - rank
+      - grade
+    description: "Change le grade d'un joueur désigné."
+    permission: "admin.use"
+  restartserver:
+    aliases:
+      - rs
+    description: "Redémarre le serveur."
+    permission: "admin.use"
+  resetstatistic:
+    aliases:
+      - statreset
+    description: "Réinitialise une statistique du joueur."
+    permission: "admin.use"
+  updatescoreboard:
+    aliases:
+      - updatesb
+    description: "Met a jour de force le ScoreBoard principal du serveur"
+    permission: "admin.use"
+permissions:
+  admin.use:
+    default: op
+    description: "Permission Administrateur."
