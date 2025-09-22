@@ -25,7 +25,7 @@ public class Msg implements CommandExecutor {
         }
         Player from = (Player) sender;
 
-        if (!from.hasPermission("hardium.msg")) {
+        if (!from.hasPermission("player.use")) {
             from.sendMessage("§7[§dMP§7] §cVous n’avez pas la permission.");
             return true;
         }

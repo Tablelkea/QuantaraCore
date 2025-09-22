@@ -15,14 +15,9 @@ public class UpdateTablist implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
 
-        FileConfiguration config = Main.getInstance().getConfig();
-
-        for(Player player : Bukkit.getOnlinePlayers()){
-
-            TablistManager.loadTablist();
-            TablistManager.loadOrder();
-            sender.sendMessage(Component.text("§aTab mis à jour avec succès."));
-        }
+        TablistManager.loadTablist();
+        TablistManager.loadOrder();
+        sender.sendMessage(Component.text("§aTab mis à jour avec succès."));
 
         return true;
     }

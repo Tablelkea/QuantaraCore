@@ -12,15 +12,17 @@ public class ReloadConfig implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
 
-        FileConfiguration config = Main.getInstance().getConfig();
+        FileConfiguration messagesConfig = Main.getInstance().getMessagesConfig();
 
         if(!sender.hasPermission("moderateur.use")) {
-            sender.sendMessage(Component.text(config.getString("messages.prefix", "§7[§bQuantara§7] ") + "§cVous n'avez pas la permission."));
+            sender.sendMessage(Component.text(messagesConfig.getString("messages.prefix", "§7[§bQuantara§7] ") + "§cVous n'avez pas la permission."));
             return true;
         }
 
         Main.getInstance().reloadConfig();
-        sender.sendMessage(Main.getInstance().getConfig().get("messages.prefix")+"Le fichier de configuration a bien été rechargé.");
+        Main.getInstance().reloadProfilesConfig();
+        Main.getInstance().reloadMessagesConfig();
+        sender.sendMessage(messagesConfig.get("messages.prefix")+"Le fichier de configuration a bien été rechargé.");
 
         return true;
     }

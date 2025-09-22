@@ -1,0 +1,7 @@
+messages:
+  console_prefix: "§A<§6@§EQuantara§A> §7"
+  prefix: "§8[§9Quantara§8] §7"
+
+  system:
+    onEnable: "§A<§6@§EQuantara§A> §7Le plugin a bien été démarré."
+    onDisable: "§A<§6@§EQuantara§A> §7Le plugin a bien été éteint."

@@ -19,10 +19,10 @@ public class ResetStatistic implements TabExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
 
-        FileConfiguration config = Main.getInstance().getConfig();
+        FileConfiguration messagesConfig = Main.getInstance().getMessagesConfig();
 
         if(!sender.hasPermission("admin.use")) {
-            sender.sendMessage(Component.text(config.getString("messages.prefix", "§7[§bQuantara§7] ") + "§cVous n'avez pas la permission."));
+            sender.sendMessage(Component.text(messagesConfig.getString("messages.prefix", "§7[§bQuantara§7] ") + "§cVous n'avez pas la permission."));
             return true;
         }
 

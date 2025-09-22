@@ -11,10 +11,10 @@ import org.jetbrains.annotations.NotNull;
 public class Color implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
-        FileConfiguration config = Main.getInstance().getConfig();
+        FileConfiguration messagesConfig = Main.getInstance().getMessagesConfig();
 
         if(!sender.hasPermission("vip.use")) {
-            sender.sendMessage(Component.text(config.getString("messages.prefix", "§7[§bQuantara§7] ") + "§cVous n'avez pas la permission."));
+            sender.sendMessage(Component.text(messagesConfig.getString("messages.prefix", "§7[§bQuantara§7] ") + "§cVous n'avez pas la permission."));
             return true;
         }
         sender.sendMessage("§6§lCouleurs disponibles :");

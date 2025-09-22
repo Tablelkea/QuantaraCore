@@ -18,6 +18,7 @@ public class ManageProfiles implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
 
         FileConfiguration config = Main.getInstance().getConfig();
+        FileConfiguration messagesConfig = Main.getInstance().getMessagesConfig();
 
         if(command.getName().equalsIgnoreCase("createprofile")){
             Player target = Bukkit.getPlayer(args[0]);
@@ -28,9 +29,9 @@ public class ManageProfiles implements CommandExecutor {
             if(config.get(profilPath) != null){
                 new QProfile(targetUUID);
 
-                sender.sendMessage(config.get("messages.prefix")+"Le profil de §e%s §7a été créer avec succès.".formatted(target.getName()));
+                sender.sendMessage(messagesConfig.get("messages.prefix")+"Le profil de §e%s §7a été créer avec succès.".formatted(target.getName()));
             }else{
-                sender.sendMessage(config.get("messages.prefix")+"§cCe profil éxiste déjà.");
+                sender.sendMessage(messagesConfig.get("messages.prefix")+"§cCe profil éxiste déjà.");
             }
 
 
@@ -45,9 +46,9 @@ public class ManageProfiles implements CommandExecutor {
             if(config.get(profilPath) != null){
                 config.set(path, null);
 
-                sender.sendMessage(config.get("messages.prefix")+"Le profil de §e%s §7a bien été supprimer.".formatted(target.getName()));
+                sender.sendMessage(messagesConfig.get("messages.prefix")+"Le profil de §e%s §7a bien été supprimer.".formatted(target.getName()));
             }else{
-                sender.sendMessage(config.get("messages.prefix")+"§cCe profil n'éxiste pas.");
+                sender.sendMessage(messagesConfig.get("messages.prefix")+"§cCe profil n'éxiste pas.");
             }
         }
 

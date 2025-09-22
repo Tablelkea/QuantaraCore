@@ -14,7 +14,7 @@ import java.util.UUID;
 public class QProfile {
 
     private final static Main INSTANCE = Main.getInstance();
-    public final static FileConfiguration config = Main.getInstance().getConfig();
+    public final static FileConfiguration config = Main.getInstance().getProfilesConfig();
 
     public static final Map<UUID, QProfile> profilMap = new HashMap<>();
 

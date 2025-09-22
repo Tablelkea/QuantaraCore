@@ -20,7 +20,7 @@ public class ToggleMP implements CommandExecutor {
         }
         Player player = (Player) sender;
 
-        if (!player.hasPermission("hardium.togglepm")) {
+        if (!player.hasPermission("player.use")) {
             player.sendMessage("§7[§dMP§7] §cVous n’avez pas la permission.");
             return true;
         }

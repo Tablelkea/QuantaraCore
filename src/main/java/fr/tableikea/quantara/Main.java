@@ -3,30 +3,38 @@ package fr.tableikea.quantara;
 import fr.tableikea.quantara.commands.*;
 import fr.tableikea.quantara.commands.freeze.Freeze;
 import fr.tableikea.quantara.commands.freeze.UnFreeze;
+import fr.tableikea.quantara.commands.home.DelHome;
+import fr.tableikea.quantara.commands.home.Home;
+import fr.tableikea.quantara.commands.home.ListHomes;
+import fr.tableikea.quantara.commands.home.SetHome;
 import fr.tableikea.quantara.commands.privateMessages.Msg;
 import fr.tableikea.quantara.commands.privateMessages.Reply;
 import fr.tableikea.quantara.commands.privateMessages.ToggleMP;
 import fr.tableikea.quantara.commands.profils.CheckProfile;
 import fr.tableikea.quantara.commands.profils.ManageProfiles;
-import fr.tableikea.quantara.commands.home.DelHome;
-import fr.tableikea.quantara.commands.home.Home;
-import fr.tableikea.quantara.commands.home.ListHomes;
-import fr.tableikea.quantara.commands.home.SetHome;
 import fr.tableikea.quantara.listeners.FreezeListener;
 import fr.tableikea.quantara.listeners.playerEvent.PlayerJoinListener;
 import fr.tableikea.quantara.managers.HomeManager;
 import fr.tableikea.quantara.managers.PrivateMessageManager;
-import fr.tableikea.quantara.managers.ProfilesManager;
 import fr.tableikea.quantara.managers.ScoreboardManager;
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.io.File;
 
 public class Main extends JavaPlugin {
 
     private static Main instance;
-
     public static boolean debugMode;
+
+    private FileConfiguration profilesConfig;
+    private File profilesFile = new File(getDataFolder(), "profiles.yml");
+
+    private FileConfiguration messagesConfig;
+    private File messagesFile = new File(getDataFolder(), "messages.yml");
 
     private PrivateMessageManager pmManager;
     private HomeManager homeManager;
@@ -70,8 +78,7 @@ public class Main extends JavaPlugin {
 
         this.homeManager = new HomeManager(this);
 
-       // ProfilesManager.loadProfilsFromConfig();
-
+        reloadProfilesConfig();
         ScoreboardManager.startScoreboardUpdater();
     }
 
@@ -92,5 +99,27 @@ public class Main extends JavaPlugin {
 
     public HomeManager getHomeManager() {
         return homeManager;
+    }
+
+    public void reloadProfilesConfig(){
+        if(!this.profilesFile.exists()){
+            this.saveResource("profiles.yml", false);
+        }
+        this.profilesConfig = YamlConfiguration.loadConfiguration(profilesFile);
+    }
+
+    public FileConfiguration getProfilesConfig(){
+        return this.profilesConfig;
+    }
+
+    public void reloadMessagesConfig(){
+        if(!this.messagesFile.exists()){
+            this.saveResource("messages.yml", false);
+        }
+        this.messagesConfig = YamlConfiguration.loadConfiguration(messagesFile);
+    }
+
+    public FileConfiguration getMessagesConfig(){
+        return this.messagesConfig;
     }
 }

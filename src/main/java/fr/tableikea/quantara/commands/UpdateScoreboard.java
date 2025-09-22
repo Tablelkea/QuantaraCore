@@ -13,10 +13,10 @@ public class UpdateScoreboard implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-        FileConfiguration config = Main.getInstance().getConfig();
+        FileConfiguration messagesConfig = Main.getInstance().getMessagesConfig();
 
         if(!sender.hasPermission("moderateur.use")) {
-            sender.sendMessage(Component.text(config.getString("messages.prefix", "§7[§bQuantara§7] ") + "§cVous n'avez pas la permission."));
+            sender.sendMessage(Component.text(messagesConfig.getString("messages.prefix", "§7[§bQuantara§7] ") + "§cVous n'avez pas la permission."));
             return true;
         }
 

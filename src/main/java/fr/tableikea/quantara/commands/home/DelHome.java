@@ -17,7 +17,7 @@ public class DelHome implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
 
-        FileConfiguration config = Main.getInstance().getConfig();
+        FileConfiguration config = Main.getInstance().getMessagesConfig();
 
         if (!(sender instanceof Player)) {
             sender.sendMessage("[MP] Seuls les joueurs peuvent utiliser cette commande.");

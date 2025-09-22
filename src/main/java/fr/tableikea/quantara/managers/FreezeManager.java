@@ -14,23 +14,23 @@ public class FreezeManager {
     private static final Set<UUID> frozenPlayers = new HashSet<>();
 
     public static void freeze(Player player) {
-        FileConfiguration config = Main.getInstance().getConfig();
+        FileConfiguration messagesConfig = Main.getInstance().getMessagesConfig();
 
         frozenPlayers.add(player.getUniqueId());
 
         player.sendMessage(Component.text(
-                config.getString("messages.prefix", "§7[§bQuantara§7] ") +
+                messagesConfig.getString("messages.prefix", "§7[§bQuantara§7] ") +
                         "§cVous êtes actuellement gelé par un modérateur."
         ));
     }
 
     public static void unfreeze(Player player) {
-        FileConfiguration config = Main.getInstance().getConfig();
+        FileConfiguration messagesConfig = Main.getInstance().getMessagesConfig();
 
         frozenPlayers.remove(player.getUniqueId());
 
         player.sendMessage(Component.text(
-                config.getString("messages.prefix", "§7[§bQuantara§7] ") +
+                messagesConfig.getString("messages.prefix", "§7[§bQuantara§7] ") +
                         "§aVous avez été libéré, vous pouvez de nouveau bouger."
         ));
     }

@@ -21,13 +21,14 @@ public class PlayerJoinListener implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         FileConfiguration config = Main.getInstance().getConfig();
+        FileConfiguration messagesConfig = Main.getInstance().getMessagesConfig();
         Player player = event.getPlayer();
         UUID playerUUID = player.getUniqueId();
         String path = "qprofils."+player.getUniqueId();
 
         // Message de connexion personnalisé
         event.joinMessage(Component.text(
-                config.getString("messages.prefix", "§7[§bQuantara§7] ") +
+                messagesConfig.getString("messages.prefix", "§7[§bQuantara§7] ") +
                         "§e" + player.getName() + " §7a rejoint le serveur."
         ));
 
