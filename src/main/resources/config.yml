@@ -10,4 +10,8 @@ settings:
   debug_mode: true
   duplicate_profil: true
 
+max-homes-per-player: 5
+home-teleport-cooldown-seconds: 30
+save-interval-seconds: 60
+
 qprofils:

@@ -1,8 +1,13 @@
 package fr.tableikea.quantara;
 
 import fr.tableikea.quantara.commands.*;
+import fr.tableikea.quantara.commands.home.DelHome;
+import fr.tableikea.quantara.commands.home.Home;
+import fr.tableikea.quantara.commands.home.ListHomes;
+import fr.tableikea.quantara.commands.home.SetHome;
 import fr.tableikea.quantara.listeners.FreezeListener;
 import fr.tableikea.quantara.listeners.PlayerJoinListener;
+import fr.tableikea.quantara.managers.HomeManager;
 import fr.tableikea.quantara.managers.PrivateMessageManager;
 import fr.tableikea.quantara.models.QPlayer;
 import fr.tableikea.quantara.scoreboard.QScoreboard;
@@ -17,6 +22,7 @@ public class Main extends JavaPlugin {
     public static boolean debugMode;
 
     private PrivateMessageManager pmManager;
+    private HomeManager homeManager;
 
     @Override
     public void onEnable() {
@@ -31,6 +37,7 @@ public class Main extends JavaPlugin {
         PluginManager pluginManager = Bukkit.getPluginManager();
         pluginManager.registerEvents(new PlayerJoinListener(), this);
         pluginManager.registerEvents(new FreezeListener(), this);
+
 
         getCommand("freeze").setExecutor(new Freeze());
         getCommand("unfreeze").setExecutor(new UnFreeze());
@@ -48,6 +55,13 @@ public class Main extends JavaPlugin {
         getCommand("reply").setExecutor(new Reply(pmManager));
         getCommand("togglemp").setExecutor(new ToggleMP(pmManager));
 
+        getCommand("sethome").setExecutor(new SetHome(this));
+        getCommand("home").setExecutor(new Home(this));
+        getCommand("delhome").setExecutor(new DelHome(this));
+        getCommand("listhomes").setExecutor(new ListHomes(this));
+
+        this.homeManager = new HomeManager(this);
+
         QPlayer.loadProfilsFromConfig();
 
         QScoreboard.startScoreboardUpdater();
@@ -55,7 +69,7 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onDisable() {
-
+        if (homeManager != null) homeManager.saveAll();
         QPlayer.saveProfilsToConfig();
 
     }
@@ -66,5 +80,9 @@ public class Main extends JavaPlugin {
 
     public PrivateMessageManager getPmManager() {
         return pmManager;
+    }
+
+    public HomeManager getHomeManager() {
+        return homeManager;
     }
 }

@@ -74,6 +74,18 @@ commands:
     description: "Répondre au dernier message privé"
   togglemp:
     description: "Activer/désactiver la réception des MP"
+  sethome:
+    description: "Définit une nouvelle home."
+    permission: hardium.home.set
+  home:
+    description: "Téléporte à une home."
+    permission: hardium.home.use
+  delhome:
+    description: "Supprime une home."
+    permission: hardium.home.del
+  listhomes:
+    description: "Liste vos homes."
+    permission: hardium.home.list
 permissions:
   admin.use:
     default: op
