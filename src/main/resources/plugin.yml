@@ -68,6 +68,12 @@ commands:
   unfreeze:
     description: "Permet de débloquer tous les mouvements d'un joueur"
     permission: "moderateur.use"
+  msg:
+    description: "Envoyer un message privé"
+  reply:
+    description: "Répondre au dernier message privé"
+  togglemp:
+    description: "Activer/désactiver la réception des MP"
 permissions:
   admin.use:
     default: op
