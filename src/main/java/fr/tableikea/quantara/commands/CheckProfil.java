@@ -1,16 +1,25 @@
 package fr.tableikea.quantara.commands;
 
 import fr.tableikea.quantara.Main;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 public class CheckProfil implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
+
+        FileConfiguration config = Main.getInstance().getConfig();
+
+        if(!sender.hasPermission("admin.use")) {
+            sender.sendMessage(Component.text(config.getString("messages.prefix", "§7[§bQuantara§7] ") + "§cVous n'avez pas la permission."));
+            return true;
+        }
 
         Player target = (Player) Bukkit.getOfflinePlayer(args[0]);
         if (args.length < 2) {

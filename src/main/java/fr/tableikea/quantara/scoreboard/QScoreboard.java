@@ -23,7 +23,10 @@ public class QScoreboard {
 
         obj.getScore("§e ").setScore(8);
         obj.getScore("§9Profil:").setScore(7);
-        obj.getScore("    §3Grade: §r" + RankColor.getRankColor(Main.getInstance().getConfig().getString("qprofils." + player.getUniqueId() + ".rank"))).setScore(6);
+        Team rank = obj.getScoreboard().registerNewTeam("rank");
+        rank.addEntry("    §3Grade: §r");
+        rank.suffix(RankColor.getDefaultRankColor(Main.getInstance().getConfig().getString("qprofils." + player.getUniqueId() + ".rank")));
+        obj.getScore("    §3Grade: §r").setScore(6);
 
         int playTimeHours = (player.getStatistic(Statistic.TOTAL_WORLD_TIME) / 20) / 3600;
         Team playtime = obj.getScoreboard().registerNewTeam("playtime");

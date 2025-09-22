@@ -18,7 +18,7 @@ commands:
       - check
       - lookup
     description: "Affiche les informations du joueur désigné."
-    permission: "admin.use"
+    permission: "moderateur.use"
   removeprofil:
     aliases:
       - frp
@@ -28,17 +28,18 @@ commands:
     aliases:
       - rlc
     description: "Recharge la configuration du serveur."
-    permission: "admin.use"
+    permission: "moderateur.use"
   mod:
     aliases:
       - annonce
       - broadcast
     description: "Publie un message sur tout le serveur."
-    permission: "admin.use"
+    permission: "moderateur.use"
   color:
     aliases:
       - showcolor
     description: "Affiche les couleurs disponible dans Minecraft pour les textes."
+    permission: "vip.use"
   perm:
     aliases:
       - changeperm
@@ -64,7 +65,6 @@ commands:
     permission: "admin.use"
   freeze:
     description: "Permet de bloquer tous les mouvements d'un joueur"
-    permission: "moderateur.use"
   unfreeze:
     description: "Permet de débloquer tous les mouvements d'un joueur"
     permission: "moderateur.use"
@@ -74,7 +74,24 @@ permissions:
     description: "Permission Administrateur."
     children:
       - "moderateur.use"
+      - "helper.use"
+      - "vip.use"
+      - "player.use"
   moderateur.use:
     default: false
     description: "Permission Modérateur."
-
+    children:
+      - "helper.use"
+      - "vip.use"
+      - "player.use"
+  helper.use:
+    default: false
+    description: "Permission Helper."
+    children:
+      - "vip.use"
+      - "player.use"
+  vip.use:
+    default: false
+    description: "Permission VIP."
+    children:
+      - "player.use"

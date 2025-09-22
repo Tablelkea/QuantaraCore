@@ -8,6 +8,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.entity.Player;
+import org.bukkit.permissions.Permission;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
@@ -55,7 +56,7 @@ public class QPlayer {
 
         if(!profilMap.containsKey(this.uuid)){
             profilMap.put(this.uuid, this);
-            Main.getInstance().getConfig().set("qprofils."+this.player.getUniqueId()+".player", this.player.getName());
+            Main.getInstance().getConfig().set("qprofils."+this.uuid+".player", this.player.getName());
             Main.getInstance().getConfig().set("qprofils."+this.player.getUniqueId()+".uuid", this.uuid.toString());
             Main.getInstance().getConfig().set("qprofils."+this.player.getUniqueId()+".rank", this.rank.toString());
             Main.getInstance().getConfig().set("qprofils."+this.player.getUniqueId()+".quantID", this.QuantID.toString());

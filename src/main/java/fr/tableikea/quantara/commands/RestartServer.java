@@ -7,6 +7,7 @@ import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
@@ -53,6 +54,13 @@ public class RestartServer extends BukkitRunnable implements CommandExecutor{
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
+
+        FileConfiguration config = Main.getInstance().getConfig();
+
+        if(!sender.hasPermission("admin.use")) {
+            sender.sendMessage(Component.text(config.getString("messages.prefix", "§7[§bQuantara§7] ") + "§cVous n'avez pas la permission."));
+            return true;
+        }
 
         RestartServer timer = new RestartServer();
         timer.runTaskTimer(Main.getInstance(), 0L, 20L);

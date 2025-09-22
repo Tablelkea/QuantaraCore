@@ -2,6 +2,7 @@ package fr.tableikea.quantara.commands;
 
 import fr.tableikea.quantara.Main;
 import fr.tableikea.quantara.models.QPlayer;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -16,6 +17,11 @@ public class ForceRemoveQProfil implements CommandExecutor {
 
         String target = args[0];
         FileConfiguration config = Main.getInstance().getConfig();
+
+        if(!sender.hasPermission("admin.use")) {
+            sender.sendMessage(Component.text(config.getString("messages.prefix", "§7[§bQuantara§7] ") + "§cVous n'avez pas la permission."));
+            return true;
+        }
 
         if(config.get("qprofils."+Bukkit.getOfflinePlayer(target).getUniqueId()) != null){
             config.set("qprofils", null);

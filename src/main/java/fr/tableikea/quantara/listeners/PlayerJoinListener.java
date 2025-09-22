@@ -2,6 +2,7 @@ package fr.tableikea.quantara.listeners;
 
 import fr.tableikea.quantara.Main;
 import fr.tableikea.quantara.models.QPlayer;
+import fr.tableikea.quantara.models.rank.Rank;
 import fr.tableikea.quantara.scoreboard.QScoreboard;
 import fr.tableikea.quantara.tablist.QTablist;
 import net.kyori.adventure.text.Component;
@@ -12,6 +13,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
@@ -44,6 +46,30 @@ public class PlayerJoinListener implements Listener {
 
         for(Player pl : Bukkit.getOnlinePlayers()){
             QScoreboard.updateScoreboard(pl);
+
+
+            Rank rank = Rank.valueOf(Main.getInstance().getConfig().getString("qprofils."+pl.getUniqueId()+".rank"));
+            switch (rank){
+                case ADMIN ->  {
+                    PermissionAttachment perm = pl.addAttachment(Main.getInstance());
+                    perm.setPermission("admin.use", true);
+                }case MODERATEUR -> {
+                    PermissionAttachment perm = pl.addAttachment(Main.getInstance());
+                    perm.setPermission("moderateur.use", true);
+                }case HELPER -> {
+                    PermissionAttachment perm = pl.addAttachment(Main.getInstance());
+                    perm.setPermission("helper.use", true);
+                }case VIP -> {
+                    PermissionAttachment perm = pl.addAttachment(Main.getInstance());
+                    perm.setPermission("vip.use", true);
+                }case JOUEUR ->{
+                    PermissionAttachment perm = pl.addAttachment(Main.getInstance());
+                    perm.setPermission("player.use", true);
+                }
+            }
+
+            pl.recalculatePermissions();
+            pl.updateCommands(); // Paper uniquement
         }
     }
 

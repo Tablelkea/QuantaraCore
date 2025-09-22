@@ -4,6 +4,7 @@ import fr.tableikea.quantara.models.QPlayer;
 import fr.tableikea.quantara.models.rank.Rank;
 import fr.tableikea.quantara.models.rank.RankColor;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Scoreboard;
@@ -33,7 +34,7 @@ public class QTablist {
             Team team = scoreboard.getTeam(teamName);
             if (team == null) {
                 team = scoreboard.registerNewTeam(teamName);
-                team.prefix(Component.text(RankColor.getRankColor(rank.toString())));
+                team.prefix(RankColor.getDefaultRankColor(rank.toString()));
                 team.setOption(Team.Option.NAME_TAG_VISIBILITY, Team.OptionStatus.ALWAYS);
             }
 
@@ -43,11 +44,10 @@ public class QTablist {
             }
 
             // Nom dans la tablist
-            Component displayName = Component.text()
-                    .append(Component.text(RankColor.getRankColor(rank.toString()) + player.getName()))
-                    .build();
 
-            player.displayName(displayName);
+            Component displayName = RankColor.getChatRankColor(rank.toString(), player.getName());
+
+            player.displayName();
             player.playerListName(displayName);
 
             // Pour Paper, on peut aussi ajouter un ordre

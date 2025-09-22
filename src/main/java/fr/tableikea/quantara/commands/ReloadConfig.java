@@ -1,14 +1,23 @@
 package fr.tableikea.quantara.commands;
 
 import fr.tableikea.quantara.Main;
+import net.kyori.adventure.text.Component;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.jetbrains.annotations.NotNull;
 
 public class ReloadConfig implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
+
+        FileConfiguration config = Main.getInstance().getConfig();
+
+        if(!sender.hasPermission("moderateur.use")) {
+            sender.sendMessage(Component.text(config.getString("messages.prefix", "§7[§bQuantara§7] ") + "§cVous n'avez pas la permission."));
+            return true;
+        }
 
         Main.getInstance().reloadConfig();
         sender.sendMessage(Main.getInstance().getConfig().get("messages.prefix")+"Le fichier de configuration a bien été rechargé.");
