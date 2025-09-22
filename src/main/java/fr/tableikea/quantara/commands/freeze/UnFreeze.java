@@ -1,4 +1,4 @@
-package fr.tableikea.quantara.commands;
+package fr.tableikea.quantara.commands.freeze;
 
 import fr.tableikea.quantara.Main;
 import fr.tableikea.quantara.managers.FreezeManager;

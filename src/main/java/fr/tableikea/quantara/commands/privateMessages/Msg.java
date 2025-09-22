@@ -1,4 +1,4 @@
-package fr.tableikea.quantara.commands;
+package fr.tableikea.quantara.commands.privateMessages;
 
 import fr.tableikea.quantara.managers.PrivateMessageManager;
 import org.bukkit.Bukkit;

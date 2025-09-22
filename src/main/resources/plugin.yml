@@ -6,20 +6,20 @@ authors:
   - TableIkea_
   - Lorenzo60
 commands:
-  createprofil:
+  createprofile:
     aliases:
       - forceprofil
       - fcp
     description: "Force la création d'un profil pour un joueur désigné."
     permission: "admin.use"
-  checkprofil:
+  checkprofile:
     aliases:
       - checkplayer
       - check
       - lookup
     description: "Affiche les informations du joueur désigné."
     permission: "moderateur.use"
-  removeprofil:
+  removeprofile:
     aliases:
       - frp
     description: "Force la suppression d'un profil pour un joueur désigné."
@@ -70,22 +70,31 @@ commands:
     permission: "moderateur.use"
   msg:
     description: "Envoyer un message privé"
+    permission: "player.use"
   reply:
     description: "Répondre au dernier message privé"
+    permission: "player.use"
   togglemp:
     description: "Activer/désactiver la réception des MP"
+    permission: "player.use"
   sethome:
     description: "Définit une nouvelle home."
-    permission: hardium.home.set
+    permission: "player.use"
   home:
     description: "Téléporte à une home."
-    permission: hardium.home.use
+    permission: "player.use"
   delhome:
     description: "Supprime une home."
-    permission: hardium.home.del
+    permission: "player.use"
   listhomes:
     description: "Liste vos homes."
-    permission: hardium.home.list
+    permission: "player.use"
+  updatetab:
+    description: "Met a jour le tab."
+    permission: "moderateur.use"
+  updateglobal:
+    description: "Met a jour les données du serveur."
+    permission: "moderateur.use"
 permissions:
   admin.use:
     default: op
@@ -113,3 +122,6 @@ permissions:
     description: "Permission VIP."
     children:
       - "player.use"
+  player.use:
+    default: true
+    description: "Permission Joueur."

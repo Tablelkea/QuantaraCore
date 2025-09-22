@@ -1,16 +1,23 @@
 package fr.tableikea.quantara;
 
 import fr.tableikea.quantara.commands.*;
+import fr.tableikea.quantara.commands.freeze.Freeze;
+import fr.tableikea.quantara.commands.freeze.UnFreeze;
+import fr.tableikea.quantara.commands.privateMessages.Msg;
+import fr.tableikea.quantara.commands.privateMessages.Reply;
+import fr.tableikea.quantara.commands.privateMessages.ToggleMP;
+import fr.tableikea.quantara.commands.profils.CheckProfile;
+import fr.tableikea.quantara.commands.profils.ManageProfiles;
 import fr.tableikea.quantara.commands.home.DelHome;
 import fr.tableikea.quantara.commands.home.Home;
 import fr.tableikea.quantara.commands.home.ListHomes;
 import fr.tableikea.quantara.commands.home.SetHome;
 import fr.tableikea.quantara.listeners.FreezeListener;
-import fr.tableikea.quantara.listeners.PlayerJoinListener;
+import fr.tableikea.quantara.listeners.playerEvent.PlayerJoinListener;
 import fr.tableikea.quantara.managers.HomeManager;
 import fr.tableikea.quantara.managers.PrivateMessageManager;
-import fr.tableikea.quantara.models.QPlayer;
-import fr.tableikea.quantara.scoreboard.QScoreboard;
+import fr.tableikea.quantara.managers.ProfilesManager;
+import fr.tableikea.quantara.managers.ScoreboardManager;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -41,10 +48,10 @@ public class Main extends JavaPlugin {
 
         getCommand("freeze").setExecutor(new Freeze());
         getCommand("unfreeze").setExecutor(new UnFreeze());
-        getCommand("checkprofil").setExecutor(new CheckProfil());
+        getCommand("checkprofile").setExecutor(new CheckProfile());
         getCommand("color").setExecutor(new Color());
-        getCommand("createprofil").setExecutor(new ForceCreateQProfil());
-        getCommand("removeprofil").setExecutor(new ForceRemoveQProfil());
+        getCommand("createprofile").setExecutor(new ManageProfiles());
+        getCommand("removeprofile").setExecutor(new ManageProfiles());
         getCommand("mod").setExecutor(new Mod());
         getCommand("perm").setExecutor(new Perm());
         getCommand("reloadconfig").setExecutor(new ReloadConfig());
@@ -54,23 +61,24 @@ public class Main extends JavaPlugin {
         getCommand("msg").setExecutor(new Msg(pmManager));
         getCommand("reply").setExecutor(new Reply(pmManager));
         getCommand("togglemp").setExecutor(new ToggleMP(pmManager));
-
         getCommand("sethome").setExecutor(new SetHome(this));
         getCommand("home").setExecutor(new Home(this));
         getCommand("delhome").setExecutor(new DelHome(this));
         getCommand("listhomes").setExecutor(new ListHomes(this));
+        getCommand("updatetab").setExecutor(new UpdateTablist());
+        getCommand("updateglobal").setExecutor(new GlobalUpdate());
 
         this.homeManager = new HomeManager(this);
 
-        QPlayer.loadProfilsFromConfig();
+       // ProfilesManager.loadProfilsFromConfig();
 
-        QScoreboard.startScoreboardUpdater();
+        ScoreboardManager.startScoreboardUpdater();
     }
 
     @Override
     public void onDisable() {
         if (homeManager != null) homeManager.saveAll();
-        QPlayer.saveProfilsToConfig();
+        //ProfilesManager.saveProfilsToConfig();
 
     }
 

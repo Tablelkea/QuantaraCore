@@ -4,7 +4,6 @@ import fr.tableikea.quantara.Main;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Statistic;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -46,8 +45,6 @@ public class ResetStatistic implements TabExecutor {
                 stats.add(stat.toString());
             }
             return stats;
-        }else if(args.length == 2){
-            return List.of("<value>");
         }
 
         return List.of();

@@ -27,7 +27,7 @@ public class SetHome implements CommandExecutor {
             return true;
         }
         Player player = (Player) sender;
-        if (!player.hasPermission("hardium.home.set")) {
+        if (!player.hasPermission("player.use")) {
             player.sendMessage(Component.text(config.getString("messages.prefix", "§7[§bQuantara§7] ") + "§cVous n'avez pas la permission."));
             return true;
         }
