@@ -75,5 +75,6 @@ Ce projet est sous licence **MIT**.
 
 ---
 
-*Développé par [Tablelkea](https://github.com/Tablelkea)*
+*Développé par [Tablelkea](https://github.com/Tablelkea)
+[Lorenzo](https://github.com/Lorenzo605)*
 
