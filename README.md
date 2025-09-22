@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="src/assets/preview.png" alt="QuantaraCore banner" width="100%" />
+  <img src="src/main/assets/preview.png" alt="QuantaraCore banner" width="100%" />
 </p>
 
 
