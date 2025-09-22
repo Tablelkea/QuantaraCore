@@ -52,11 +52,11 @@ public class QTablist {
 
             // Pour Paper, on peut aussi ajouter un ordre
             int order = switch (rank) {
-                case ADMIN -> 0;
-                case MODERATEUR -> 5;
+                case ADMIN -> 20;
+                case MODERATEUR -> 15;
                 case HELPER -> 10;
-                case VIP -> 15;
-                default -> 20;
+                case VIP -> 5;
+                default -> 0;
             };
             player.setPlayerListOrder(order);
 
