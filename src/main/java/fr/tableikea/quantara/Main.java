@@ -1,6 +1,7 @@
 package fr.tableikea.quantara;
 
 import fr.tableikea.quantara.commands.*;
+import fr.tableikea.quantara.listeners.FreezeListener;
 import fr.tableikea.quantara.listeners.PlayerJoinListener;
 import fr.tableikea.quantara.models.QPlayer;
 import fr.tableikea.quantara.scoreboard.QScoreboard;
@@ -24,7 +25,11 @@ public class Main extends JavaPlugin {
 
         PluginManager pluginManager = Bukkit.getPluginManager();
         pluginManager.registerEvents(new PlayerJoinListener(), this);
+        pluginManager.registerEvents(new FreezeListener(), this);
 
+
+        getCommand("freeze").setExecutor(new Freeze());
+        getCommand("unfreeze").setExecutor(new UnFreeze());
         getCommand("checkprofil").setExecutor(new CheckProfil());
         getCommand("color").setExecutor(new Color());
         getCommand("createprofil").setExecutor(new ForceCreateQProfil());

@@ -2,6 +2,9 @@ name: Quantara
 version: 1.0
 main: fr.tableikea.quantara.Main
 api-version: 1.20
+authors:
+  - TableIkea_
+  - Lorenzo60
 commands:
   createprofil:
     aliases:
@@ -59,6 +62,12 @@ commands:
       - updatesb
     description: "Met a jour de force le ScoreBoard principal du serveur"
     permission: "admin.use"
+  freeze:
+    description: "Permet de bloquer tous les mouvements d'un joueur"
+    permission: "hardium.freeze"
+  unfreeze:
+    description: "Permet de débloquer tous les mouvements d'un joueur"
+    permission: "hardium.freeze"
 permissions:
   admin.use:
     default: op
