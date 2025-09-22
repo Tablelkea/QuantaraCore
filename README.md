@@ -1,3 +1,9 @@
+
+<p align="center">
+  <img src=".assets/preview.png" alt="QuantaraCore banner" width="100%" />
+</p>
+
+
 # 🚀 QuantaraCore
 
 **QuantaraCore** est un plugin Minecraft *core* conçu pour gérer des profils joueurs personnalisés, des grades, des annonces, des statistiques, un scoreboard dynamique et une tablist améliorée. Parfait pour des infrastructures serveur complexes.
