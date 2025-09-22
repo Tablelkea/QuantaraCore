@@ -26,11 +26,17 @@ public class QScoreboard {
         obj.getScore("    §3Grade: §r" + RankColor.getRankColor(Main.getInstance().getConfig().getString("qprofils." + player.getUniqueId() + ".rank"))).setScore(6);
 
         int playTimeHours = (player.getStatistic(Statistic.TOTAL_WORLD_TIME) / 20) / 3600;
-        obj.getScore("§7    §3Présence: §7" + playTimeHours + "h").setScore(5);
+        Team playtime = obj.getScoreboard().registerNewTeam("playtime");
+        playtime.addEntry("§7    §3Présence: §7");
+        playtime.suffix(Component.text("PLAYTIME"));
+        obj.getScore("§7    §3Présence: §7").setScore(5);
 
         obj.getScore("§6 ").setScore(4);
         obj.getScore("§dInfos:").setScore(3);
-        obj.getScore("§7    §5Connectés: §7" + Bukkit.getOnlinePlayers().size()).setScore(2);
+        Team online_players = obj.getScoreboard().registerNewTeam("online_players");
+        online_players.addEntry("§7    §5Connectés: §7");
+        online_players.suffix(Component.text("CONNECTES"));
+        obj.getScore("§7    §5Connectés: §7").setScore(2);
         obj.getScore("§c ").setScore(1);
         obj.getScore("§9mc.quantara.fr").setScore(0);
 
@@ -52,10 +58,11 @@ public class QScoreboard {
         Objective obj = board.getObjective("sidebar");
         if (obj == null) return;
 
-        int playTimeHours = (player.getStatistic(Statistic.TOTAL_WORLD_TIME) / 20) / 3600;
-        obj.getScore("§7    §3Présence: §7" + playTimeHours + "h").setScore(5);
+        board.getTeam("online_players").suffix(Component.text(Bukkit.getOnlinePlayers().size()));
 
-        obj.getScore("§7    §5Connectés: §7" + Bukkit.getOnlinePlayers().size()).setScore(2);
+        int playTimeHours = (player.getStatistic(Statistic.TOTAL_WORLD_TIME) / 20) / 3600;
+        board.getTeam("playtime").suffix(Component.text(playTimeHours + "h"));
+
     }
 
     public static void updateAllScoreboards() {

@@ -64,11 +64,17 @@ commands:
     permission: "admin.use"
   freeze:
     description: "Permet de bloquer tous les mouvements d'un joueur"
-    permission: "hardium.freeze"
+    permission: "moderateur.use"
   unfreeze:
     description: "Permet de débloquer tous les mouvements d'un joueur"
-    permission: "hardium.freeze"
+    permission: "moderateur.use"
 permissions:
   admin.use:
     default: op
     description: "Permission Administrateur."
+    children:
+      - "moderateur.use"
+  moderateur.use:
+    default: false
+    description: "Permission Modérateur."
+

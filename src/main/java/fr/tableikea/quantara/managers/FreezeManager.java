@@ -31,7 +31,7 @@ public class FreezeManager {
 
         player.sendMessage(Component.text(
                 config.getString("messages.prefix", "§7[§bQuantara§7] ") +
-                        "§aVous avez été libéré, vous pouvez bouger à nouveau."
+                        "§aVous avez été libéré, vous pouvez de nouveau bouger."
         ));
     }
 

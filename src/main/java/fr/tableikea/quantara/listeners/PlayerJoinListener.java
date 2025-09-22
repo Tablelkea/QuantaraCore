@@ -41,6 +41,10 @@ public class PlayerJoinListener implements Listener {
         // Charger scoreboard et tablist
         QScoreboard.loadScoreBoard(player);
         QTablist.loadTabList(); // Cette méthode met à jour pour tous les joueurs
+
+        for(Player pl : Bukkit.getOnlinePlayers()){
+            QScoreboard.updateScoreboard(pl);
+        }
     }
 
     @EventHandler
@@ -53,7 +57,14 @@ public class PlayerJoinListener implements Listener {
             team.removeEntry(player.getName());
         }
 
+        for(Player pl : Bukkit.getOnlinePlayers()){
+            QScoreboard.updateScoreboard(pl);
+        }
+
         // Message de déconnexion (optionnel)
-        event.quitMessage(Component.text("§c" + player.getName() + " §7a quitté le serveur."));
+        event.quitMessage(Component.text(
+                Main.getInstance().getConfig().getString("messages.prefix", "§7[§bQuantara§7] ") +
+                        "§e" + player.getName() + " §7a quitter le serveur."
+        ));
     }
 }

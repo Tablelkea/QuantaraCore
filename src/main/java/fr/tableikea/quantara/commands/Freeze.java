@@ -16,11 +16,6 @@ public class Freeze implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
         FileConfiguration config = Main.getInstance().getConfig();
 
-        if(!sender.hasPermission("hardium.freeze")) {
-            sender.sendMessage(Component.text(config.getString("messages.prefix", "§7[§bQuantara§7] ") + "§cVous n'avez pas la permission."));
-            return true;
-        }
-
         if(args.length != 1) {
             sender.sendMessage(Component.text(config.getString("messages.prefix", "§7[§bQuantara§7] ") + "§cUsage: /freeze <joueur>."));
             return true;
