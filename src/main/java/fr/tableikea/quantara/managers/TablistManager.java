@@ -1,7 +1,6 @@
 package fr.tableikea.quantara.managers;
 
 import fr.tableikea.quantara.Main;
-import fr.tableikea.quantara.managers.rank.RankColorManager;
 import fr.tableikea.quantara.models.Rank;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
@@ -32,6 +31,7 @@ public class TablistManager {
                 case MODERATEUR -> 15;
                 case HELPER -> 10;
                 case VIP -> 5;
+                case PLAYER -> 0;
                 default -> 0;
             };
             player.setPlayerListOrder(order);

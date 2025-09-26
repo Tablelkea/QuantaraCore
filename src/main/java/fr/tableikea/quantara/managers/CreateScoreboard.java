@@ -1,13 +1,14 @@
-package fr.tableikea.quantara.models;
+package fr.tableikea.quantara.managers;
 
 import fr.tableikea.quantara.Main;
-import fr.tableikea.quantara.managers.rank.RankColorManager;
+import fr.tableikea.quantara.models.QProfile;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Statistic;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.*;
+import org.bukkit.scoreboard.ScoreboardManager;
 
 import java.util.UUID;
 

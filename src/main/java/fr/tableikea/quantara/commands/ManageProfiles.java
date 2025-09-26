@@ -1,4 +1,4 @@
-package fr.tableikea.quantara.commands.profils;
+package fr.tableikea.quantara.commands;
 
 import fr.tableikea.quantara.Main;
 import fr.tableikea.quantara.models.QProfile;
@@ -50,6 +50,27 @@ public class ManageProfiles implements CommandExecutor {
             }else{
                 sender.sendMessage(messagesConfig.get("messages.prefix")+"§cCe profil n'éxiste pas.");
             }
+        }else if(command.getName().equalsIgnoreCase("checkprofile")){
+            UUID targetUUID = Bukkit.getPlayer(args[0]).getUniqueId();
+            String profilPath = "qprofils."+targetUUID;
+            String path = "qprofils."+targetUUID+".";
+
+            if(config.get(profilPath) != null){
+                String player = config.getString(path+"player");
+                String permission = config.getString(path+"permission");
+                String quantaraID = config.getString(path+"quantaraID");
+
+                sender.sendMessage(
+                        "§8§m───────────────\n§r"+
+                                "§7Joueur: §b" + player+
+                                "\n§7Unique ID du joueur: §b" + targetUUID +
+                                "\n§7Permission: §b" + permission+
+                                "\n§7QuantaraID: §b" + quantaraID+ "\n"+
+                                "§8§m───────────────\n"
+                );
+            }
+
+            return true;
         }
 
         return true;

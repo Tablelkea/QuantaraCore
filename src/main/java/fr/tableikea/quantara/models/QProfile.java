@@ -50,7 +50,7 @@ public class QProfile {
         config.set("qprofils."+uuid+".permission", playerProfil.getPermission().toString());
         config.set("qprofils."+uuid+".quantaraID", playerProfil.getQuantaraID().toString());
 
-        INSTANCE.saveConfig();
+        INSTANCE.reloadProfilesConfig();
     }
 
     public static @NotNull QProfile getPlayerProfile(UUID uuid){

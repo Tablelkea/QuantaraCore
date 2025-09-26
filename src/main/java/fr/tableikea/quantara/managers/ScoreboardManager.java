@@ -1,8 +1,6 @@
 package fr.tableikea.quantara.managers;
 
 import fr.tableikea.quantara.Main;
-import fr.tableikea.quantara.managers.rank.RankColorManager;
-import fr.tableikea.quantara.models.CreateScoreboard;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Statistic;

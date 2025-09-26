@@ -1,4 +1,4 @@
-package fr.tableikea.quantara.managers.rank;
+package fr.tableikea.quantara.managers;
 
 import fr.tableikea.quantara.Main;
 import fr.tableikea.quantara.models.Rank;
@@ -51,10 +51,12 @@ public class RankColorManager {
                 case HELPER -> {return MiniMessage.miniMessage().deserialize("<color:#262626>[</color><color:#"+helperColor+">Helper</color><color:#262626>] </color><color:#"+helperColor+"><player></color>", Placeholder.component("player", Component.text(player)));}
                 case VIP -> {return MiniMessage.miniMessage().deserialize("<color:#262626>[</color><color:#"+vipColor+">VIP</color><color:#262626>] </color><color:#"+vipColor+"><player></color>", Placeholder.component("player", Component.text(player)));}
                 case PLAYER -> {return MiniMessage.miniMessage().deserialize("<color:#262626>[</color>Joueur<color:#262626>] </color><player>", Placeholder.component("player", Component.text(player)));}
-                case null, default -> {return MiniMessage.miniMessage().deserialize("<color:#"+errorColor+"><b><i>Erreur</i></b></color>");}
+                default -> {return MiniMessage.miniMessage().deserialize("<color:#"+errorColor+"><b><i>Erreur</i></b></color>");}
             }
+        }else{
+
         }
-        return null;
+        return MiniMessage.miniMessage().deserialize("<color:#"+errorColor+"><b><i>Erreur</i></b></color>");
     }
 
     public static Component getPlayerPrefixInScoreboard(UUID uuid){

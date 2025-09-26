@@ -2,7 +2,7 @@ package fr.tableikea.quantara.commands;
 
 import fr.tableikea.quantara.managers.ScoreboardManager;
 import fr.tableikea.quantara.managers.TablistManager;
-import fr.tableikea.quantara.managers.rank.RankManager;
+import fr.tableikea.quantara.managers.RankManager;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

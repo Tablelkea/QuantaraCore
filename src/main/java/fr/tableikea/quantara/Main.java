@@ -1,17 +1,15 @@
 package fr.tableikea.quantara;
 
 import fr.tableikea.quantara.commands.*;
-import fr.tableikea.quantara.commands.freeze.Freeze;
-import fr.tableikea.quantara.commands.freeze.UnFreeze;
-import fr.tableikea.quantara.commands.home.DelHome;
-import fr.tableikea.quantara.commands.home.Home;
-import fr.tableikea.quantara.commands.home.ListHomes;
-import fr.tableikea.quantara.commands.home.SetHome;
-import fr.tableikea.quantara.commands.privateMessages.Msg;
-import fr.tableikea.quantara.commands.privateMessages.Reply;
-import fr.tableikea.quantara.commands.privateMessages.ToggleMP;
-import fr.tableikea.quantara.commands.profils.CheckProfile;
-import fr.tableikea.quantara.commands.profils.ManageProfiles;
+import fr.tableikea.quantara.commands.Color;
+import fr.tableikea.quantara.commands.GlobalUpdate;
+import fr.tableikea.quantara.commands.Mod;
+import fr.tableikea.quantara.commands.Perm;
+import fr.tableikea.quantara.commands.ReloadConfig;
+import fr.tableikea.quantara.commands.ResetStatistic;
+import fr.tableikea.quantara.commands.RestartServer;
+import fr.tableikea.quantara.commands.UpdateScoreboard;
+import fr.tableikea.quantara.commands.UpdateTablist;
 import fr.tableikea.quantara.listeners.FreezeListener;
 import fr.tableikea.quantara.listeners.playerEvent.PlayerJoinListener;
 import fr.tableikea.quantara.managers.HomeManager;
@@ -36,15 +34,23 @@ public class Main extends JavaPlugin {
     private FileConfiguration messagesConfig;
     private File messagesFile = new File(getDataFolder(), "messages.yml");
 
+    private FileConfiguration guiConfig;
+    private File guiFile = new File(getDataFolder(), "gui.yml");
+
     private PrivateMessageManager pmManager;
     private HomeManager homeManager;
 
     @Override
     public void onEnable() {
+
         instance = this;
         saveDefaultConfig();
 
-        System.out.println(this.getConfig().get("messages.system.onEnable", "§cErreur du chargement du message."));
+        reloadMessagesConfig();
+        reloadProfilesConfig();
+        reloadGuiConfig();
+
+        System.out.println(this.getConfig().getString("messages.system.onEnable", "§cErreur du chargement du message."));
         debugMode = getInstance().getConfig().getBoolean("settings.debug_mode");
 
         pmManager = new PrivateMessageManager();
@@ -54,31 +60,39 @@ public class Main extends JavaPlugin {
         pluginManager.registerEvents(new FreezeListener(), this);
 
 
-        getCommand("freeze").setExecutor(new Freeze());
-        getCommand("unfreeze").setExecutor(new UnFreeze());
-        getCommand("checkprofile").setExecutor(new CheckProfile());
-        getCommand("color").setExecutor(new Color());
+        getCommand("freeze").setExecutor(new FreezeCommand());
+        getCommand("unfreeze").setExecutor(new FreezeCommand());
+
+        getCommand("checkprofile").setExecutor(new ManageProfiles());
         getCommand("createprofile").setExecutor(new ManageProfiles());
         getCommand("removeprofile").setExecutor(new ManageProfiles());
+
+        getCommand("color").setExecutor(new Color());
+
+        getCommand("msg").setExecutor(new MsgCommand(pmManager));
+        getCommand("reply").setExecutor(new MsgCommand(pmManager));
+        getCommand("togglemp").setExecutor(new MsgCommand(pmManager));
+
+        getCommand("sethome").setExecutor(new HomeCommand(this));
+        getCommand("home").setExecutor(new HomeCommand(this));
+        getCommand("delhome").setExecutor(new HomeCommand(this));
+        getCommand("listhomes").setExecutor(new HomeCommand(this));
+
         getCommand("mod").setExecutor(new Mod());
         getCommand("perm").setExecutor(new Perm());
         getCommand("reloadconfig").setExecutor(new ReloadConfig());
         getCommand("resetstatistic").setExecutor(new ResetStatistic());
         getCommand("restartserver").setExecutor(new RestartServer());
         getCommand("updatescoreboard").setExecutor(new UpdateScoreboard());
-        getCommand("msg").setExecutor(new Msg(pmManager));
-        getCommand("reply").setExecutor(new Reply(pmManager));
-        getCommand("togglemp").setExecutor(new ToggleMP(pmManager));
-        getCommand("sethome").setExecutor(new SetHome(this));
-        getCommand("home").setExecutor(new Home(this));
-        getCommand("delhome").setExecutor(new DelHome(this));
-        getCommand("listhomes").setExecutor(new ListHomes(this));
+
+
         getCommand("updatetab").setExecutor(new UpdateTablist());
         getCommand("updateglobal").setExecutor(new GlobalUpdate());
+        getCommand("manage").setExecutor(new ManagePlayer());
 
         this.homeManager = new HomeManager(this);
 
-        reloadProfilesConfig();
+
         ScoreboardManager.startScoreboardUpdater();
     }
 
@@ -121,5 +135,16 @@ public class Main extends JavaPlugin {
 
     public FileConfiguration getMessagesConfig(){
         return this.messagesConfig;
+    }
+
+    public void reloadGuiConfig(){
+        if(!this.guiFile.exists()){
+            this.saveResource("gui.yml", false);
+        }
+        this.guiConfig = YamlConfiguration.loadConfiguration(guiFile);
+    }
+
+    public FileConfiguration getGuiConfig(){
+        return this.guiConfig;
     }
 }

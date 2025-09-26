@@ -1,4 +1,4 @@
-package fr.tableikea.quantara.managers.rank;
+package fr.tableikea.quantara.managers;
 
 import fr.tableikea.quantara.Main;
 import fr.tableikea.quantara.models.Rank;

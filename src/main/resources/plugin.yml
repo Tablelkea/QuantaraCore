@@ -5,6 +5,8 @@ api-version: 1.20
 authors:
   - TableIkea_
   - Lorenzo60
+depend:
+  - QuantaraAuth
 commands:
   createprofile:
     aliases:
@@ -94,6 +96,9 @@ commands:
     permission: "moderateur.use"
   updateglobal:
     description: "Met a jour les données du serveur."
+    permission: "moderateur.use"
+  manage:
+    description: "Permet un accès rapide au informations du joueur."
     permission: "moderateur.use"
 permissions:
   admin.use:

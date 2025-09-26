@@ -5,6 +5,8 @@ import fr.tableikea.quantara.managers.TablistManager;
 import fr.tableikea.quantara.models.QProfile;
 import fr.tableikea.quantara.managers.ScoreboardManager;
 import fr.tableikea.quantara.models.Rank;
+import fr.tableikea.quantaraAuth.QuantaraAuth;
+import fr.tableikea.quantaraAuth.models.ProfileManager;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -26,16 +28,8 @@ public class PlayerJoinListener implements Listener {
         UUID playerUUID = player.getUniqueId();
         String path = "qprofils."+player.getUniqueId();
 
-        // Message de connexion personnalisé
-        event.joinMessage(Component.text(
-                messagesConfig.getString("messages.prefix", "§7[§bQuantara§7] ") +
-                        "§e" + player.getName() + " §7a rejoint le serveur."
-        ));
-
-        // Chargement du profil si besoin
-        if (config.get(path) == null){
-            new QProfile(playerUUID);
-        }
+        QProfile profile = ProfileManager.getProfile(playerUUID);
+        ProfileManager.saveProfile(profile);
 
         // Charger scoreboard et tablist
         ScoreboardManager.loadScoreBoard(player);
